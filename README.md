@@ -7,7 +7,7 @@ message archives.
 
 Deploy:
 
-[![Deploy on Railway](https://railway.com/button.svg)](https://railway.app/new?github_url=https://github.com/lNamelessl/prosody-railway-template)
+[![Deploy on Railway](https://railway.com/button.svg)](https://railway.com/deploy/prosody-template)
 
 (Published template URL: https://railway.com/deploy/prosody-template)
 
