@@ -9,6 +9,11 @@
 consider_bosh_secure = true
 consider_websocket_secure = true
 
+-- Vanilla Prosody binds its HTTP service to localhost only
+-- (http_interfaces default { "127.0.0.1", "::1" }) — Railway's proxy could
+-- never reach it (502). Open the BOSH/WebSocket listener to all interfaces.
+http_interfaces = { "*" }
+
 -- Railway attaches ONE volume per service, so the STARTTLS certificates live
 -- inside the persistent data volume (/var/lib/prosody) rather than the
 -- default /etc/prosody/certs. Keeps the self-signed cert (and its
