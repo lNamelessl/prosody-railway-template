@@ -9,6 +9,12 @@
 consider_bosh_secure = true
 consider_websocket_secure = true
 
+-- Railway attaches ONE volume per service, so the STARTTLS certificates live
+-- inside the persistent data volume (/var/lib/prosody) rather than the
+-- default /etc/prosody/certs. Keeps the self-signed cert (and its
+-- fingerprint, which clients "accept once") stable across redeploys.
+certificates = "/var/lib/prosody/certs"
+
 -- Security posture: in-band registration stays OFF (admin-only server, no
 -- open relay, no spam signups). The first admin account is created at first
 -- boot from the LOCAL/DOMAIN/PASSWORD variables; extra users are added by the

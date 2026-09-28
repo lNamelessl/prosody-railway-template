@@ -21,9 +21,10 @@ fi
 
 # --- 2. First-boot self-signed cert for the vhost ------------------------------
 # Needed for STARTTLS on the 5222 TCP proxy (c2s_requires_encryption=true by
-# default). Persisted in the /etc/prosody/certs volume so clients that accept
-# the certificate once keep a stable fingerprint across restarts.
-CERT_DIR="/etc/prosody/certs"
+# default). Railway attaches one volume per service, so certs live inside the
+# persistent data volume (matches `certificates` in conf.d/railway.cfg.lua) —
+# clients that accept the certificate once keep a stable fingerprint.
+CERT_DIR="/var/lib/prosody/certs"
 if [[ -n "$VHOST" ]]; then
     mkdir -p "$CERT_DIR"
     if [[ ! -f "$CERT_DIR/$VHOST.crt" ]]; then

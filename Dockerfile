@@ -19,8 +19,10 @@
 #      (crash loop). Our wrapper unsets that trio once the admin account file
 #      exists, so registration fires exactly once (first boot only).
 # It also generates a self-signed cert for the vhost on first boot so XMPP
-# clients on the 5222 TCP proxy can negotiate STARTTLS (persisted in the
-# /etc/prosody/certs volume so the fingerprint stays stable across restarts).
+# clients on the 5222 TCP proxy can negotiate STARTTLS. Railway attaches ONE
+# volume per service, so the cert lives inside the persistent data volume at
+# /var/lib/prosody/certs (see conf.d/railway.cfg.lua `certificates`) — the
+# fingerprint stays stable across restarts.
 FROM prosodyim/prosody:13.0
 
 # Literal config baked into the image on purpose (NOT template variables ->

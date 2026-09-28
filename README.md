@@ -19,8 +19,7 @@ Deploy:
 | HTTP service domain | serves `wss://<your-domain>/xmpp-websocket` (XMPP over WebSocket) and `https://<your-domain>/http-bind` (BOSH) behind Railway's TLS |
 | TCP proxy on 5222 | standard XMPP client connections (Conversations, Gajim, …) with STARTTLS |
 | TCP proxy on 5269 | server-to-server (s2s) federation port — see "Federation (advanced)" |
-| Volume `/var/lib/prosody` | accounts, roster, message archives (MAM) — survive restarts |
-| Volume `/etc/prosody/certs` | self-signed STARTTLS certificate — stable fingerprint across restarts |
+| Volume `/var/lib/prosody` | accounts, roster, message archives (MAM) **and** the self-signed STARTTLS cert (`/var/lib/prosody/certs`) — persist across restarts (Railway attaches one volume per service) |
 
 ## Zero-credential onboarding
 
