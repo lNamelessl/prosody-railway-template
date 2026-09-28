@@ -14,6 +14,12 @@ consider_websocket_secure = true
 -- never reach it (502). Open the BOSH/WebSocket listener to all interfaces.
 http_interfaces = { "*" }
 
+-- Archive ALL chat messages by default (Prosody's stock default is
+-- "roster" only, which silently drops history between users who never
+-- added each other to their rosters). Personal-server default: keep
+-- everything; expired entries are pruned by PROSODY_ARCHIVE_EXPIRY_DAYS.
+default_archive_policy = true
+
 -- Railway attaches ONE volume per service, so the STARTTLS certificates live
 -- inside the persistent data volume (/var/lib/prosody) rather than the
 -- default /etc/prosody/certs. Keeps the self-signed cert (and its
