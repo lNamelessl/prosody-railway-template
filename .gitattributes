@@ -1,0 +1,3 @@
+railway-entrypoint.sh text eol=lf
+*.cfg.lua text eol=lf
+Dockerfile text eol=lf
